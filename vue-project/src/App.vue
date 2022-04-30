@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <HeaderSection />
     <SignupForm msg="Sign Up Form" />
     <Login />
   </div>
