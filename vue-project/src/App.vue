@@ -1,23 +1,18 @@
 <template>
   <div id="app">
-    <HeaderSection />
-    <SignupForm msg="Sign Up Form" />
-    <Login />
+    <AdminHeader />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HeaderSection from './components/HeaderSection.vue'
-import SignupForm from './components/SignUp.vue'
-import Login from './components/Login.vue'
+import AdminHeader from "@/components/AdminHeaderSection.vue";
 export default {
-  name: 'App',
-  components: {
-    HeaderSection,
-    SignupForm,
-    Login
-  }
-}
+  name: "App",
+  component: {
+    AdminHeader,
+  },
+};
 </script>
 
 <style>
