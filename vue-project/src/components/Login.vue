@@ -24,6 +24,10 @@
             Sign up</router-link
           >
         </li>
+        <div v-if="error">
+          {{ error }}
+        </div>
+        <div v-if="success" id="success">Logged in Successfully</div>
       </form>
     </div>
   </div>
@@ -32,22 +36,32 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  name: "Login",
+
   data() {
     return {
       email: "",
       password: "",
+      error: null,
+      success: false,
     };
   },
-
-  name: "Login",
-
   methods: {
-    ...mapActions(["getUsers"]),
+    login: async function () {
+      const auth = { username: this.username, password: this.password };
+      // Correct username is 'foo' and password is 'bar'
+      const url = "https://localhost:3000/login";
+      this.success = false;
+      this.error = null;
+
+      try {
+        const res = await axios.get(url, { auth }).then((res) => res.data);
+        this.success = true;
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
   },
-  computed: mapGetters(["getUsers"]),
-  // created() {
-  //   this.getUsers();
-  // },
 };
 </script>
 <style scoped>
