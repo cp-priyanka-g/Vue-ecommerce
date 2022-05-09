@@ -34,9 +34,8 @@
               >Product</a
             >
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/product-list">Show </a>
-              <a class="dropdown-item" href="/product-add">Add</a>
-              <a class="dropdown-item" href="#">Edit</a>
+              <a href="/product-list">Show </a>
+              <a href="/product-add">Add</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -50,9 +49,8 @@
               >Category</a
             >
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Show </a>
-              <a class="dropdown-item" href="#">Add</a>
-              <a class="dropdown-item" href="#">Edit</a>
+              <a href="/category-list">Show </a>
+              <a href="/category-add">Add</a>
             </div>
           </li>
           <li class="nav-item dropdown">

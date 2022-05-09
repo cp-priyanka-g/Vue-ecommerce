@@ -5,7 +5,9 @@ import Test from '@/components/Test/test.vue'
 import Home from '@/components/Home.vue'
 import Product from '@/components/Admin/Product/Product.vue'
 import AddProduct from '@/components/Admin/Product/AddProduct.vue'
-import  AdminDashboard from '@/components/Admin/Dashboard.vue'
+import AdminDashboard from '@/components/Admin/Dashboard.vue'
+import AddCategory from '@/components/Admin/Categories/CreateCategory.vue'
+import Category from '@/components/Admin/Categories/Category.vue'
 
 const routes = [
   {
@@ -37,7 +39,17 @@ const routes = [
     path: '/product-add',
     name: 'product-add',
     component: AddProduct
-  }
+  },
+     {
+    path: '/category-add',
+    name: 'category-add',
+    component: AddCategory
+  },
+  {
+    path: '/category-list',
+    name: 'category-list',
+    component: Category
+  },
   //   {
   //   path: '/test',
   //   name: 'test',

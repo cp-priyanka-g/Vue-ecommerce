@@ -4,6 +4,7 @@ import { createStore } from 'vuex'
 import register from "./modules/register"
 import account from './modules/account'
 import products from './modules/products.js'
+import category from './modules/category.js'
 
 
 export default createStore({
@@ -11,6 +12,7 @@ export default createStore({
     // test,
     register,
     products,
+    category,
      account
   }
 });
