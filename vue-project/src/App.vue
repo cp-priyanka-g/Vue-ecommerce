@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <AdminHeader />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import AdminHeader from "@/components/AdminHeaderSection.vue";
 export default {
   name: "App",
-  component: {
-    AdminHeader,
-  },
 };
 </script>
 

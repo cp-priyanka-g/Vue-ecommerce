@@ -27,8 +27,9 @@ const actions={
 
 }
 const mutations={
-    SET_USER:(state,addUsers)=>{
-    state.users=addUsers
+
+    SET_USER:(state,data)=>{
+    state.users=data
     },
     SET_USER_ERROR:(state,userError)=>{
     state.userError=userError

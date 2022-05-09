@@ -1,72 +1,61 @@
 <template>
-  <div class="container">
-    <div class="con-display">
-      <form>
-        <h3>Sign In</h3>
-        <div class="form-group">
-          <label>Email address</label>
-          <input type="email" v-model="email" class="form-control" />
+  <div>
+    <div class="container" style="padding-top: 10%">
+      <div class="row d-flex justify-content-center">
+        <div class="col-5 text-left login-form-container">
+          <div class="d-flex justify-content-center">
+            <img
+              src="https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png"
+              width="150"
+              alt=""
+            />
+          </div>
+          <div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+              />
+            </div>
+
+            <button
+              @click="login()"
+              type="submit"
+              class="btn btn-primary btn-block mt-5"
+            >
+              Login
+            </button>
+            <p class="forgot-password text-right mt-2">
+              Not registered yet ?
+              <router-link class="nav-link pr-3" to="/register"
+                >Sign in</router-link
+              >
+            </p>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" v-model="password" class="form-control" />
-        </div>
-        <button
-          type="submit"
-          @click="loginAction"
-          class="btn btn-dark btn-lg btn-block mt-5"
-        >
-          Sign In
-        </button>
-        <p class="forgot-password text-right mt-5">Not registered ?</p>
-        <li class="nav-item mt-1">
-          <router-link class="btn btn-outline-primary" to="/register">
-            Sign up</router-link
-          >
-        </li>
-        <div v-if="error">
-          {{ error }}
-        </div>
-        <div v-if="success" id="success">Logged in Successfully</div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from "vuex";
-
+import { mapActions } from "vuex";
 export default {
   name: "Login",
-
-  data() {
-    return {
-      email: "",
-      password: "",
-      error: null,
-      success: false,
-    };
-  },
   methods: {
-    login: async function () {
-      const auth = { username: this.username, password: this.password };
-      // Correct username is 'foo' and password is 'bar'
-      const url = "https://localhost:3000/login";
-      this.success = false;
-      this.error = null;
-
-      try {
-        const res = await axios.get(url, { auth }).then((res) => res.data);
-        this.success = true;
-      } catch (err) {
-        this.error = err.message;
-      }
-    },
+    ...mapActions("account", ["login"]),
   },
 };
 </script>
-<style scoped>
-.con-display {
-  margin: auto;
-  width: 29%;
-}
-</style>
+
+<style></style>

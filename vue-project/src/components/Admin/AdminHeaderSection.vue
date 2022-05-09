@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#"
+            <a class="nav-link active" href="/admin-dashboard"
               >Home
               <span class="visually-hidden">(current)</span>
             </a>
@@ -34,8 +34,8 @@
               >Product</a
             >
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Show </a>
-              <a class="dropdown-item" href="#">Add</a>
+              <a class="dropdown-item" href="/product-list">Show </a>
+              <a class="dropdown-item" href="/product-add">Add</a>
               <a class="dropdown-item" href="#">Edit</a>
             </div>
           </li>
