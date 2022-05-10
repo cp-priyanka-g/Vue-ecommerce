@@ -30,7 +30,7 @@
             </div>
 
             <button
-              @click="login()"
+              @click="get()"
               type="submit"
               class="btn btn-primary btn-block mt-5"
             >
@@ -49,11 +49,16 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "Login",
   methods: {
-    ...mapActions("account", ["login"]),
+    ...mapActions(["get"]),
+  },
+  computed: mapGetters(["getUsers"]),
+  created() {
+    this.$store.dispatch("get");
+    this.get();
   },
 };
 </script>

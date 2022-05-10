@@ -1,46 +1,79 @@
 import axios from "axios";
 
 const state = {
-  products: []
+  products: [],
+  productError:"Crud error on product"
 };
 const getters = {
-  allProducts: state => state.products
+  allProducts: state => state.products,
+  productItemById: (state) => (id) => {
+    return state. allProducts.find( allProduct=>allProduct.id === id)
+  },
+  productError:(state)=>state.productError
 };
+
 const actions = {
-  async getProducts({ commit }) {
-    const response = await axios.get("http://localhost:3000/product-list");
+   getproduct({ commit }) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/product-list`).then((response) => {
+       commit("setproduct", response.data);
+          resolve(response);
+      })
+      .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
+ addproduct({ commit }, product) {
+    return new Promise((resolve, reject) => {
+       axios.post(`http://localhost:3000/product-add`, product ).then((response) => {
+    commit("newproduct", response.data);
+     resolve(response);
+  })
+  .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
+   deleteproduct({ commit }, id) {
+    return new Promise((resolve, reject) => {
+    axios.get(`http://localhost:3000/product-delete/${id}`).then((response) => {
+    commit("removeproduct", id);
+    resolve(response);
+    })
+     .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
 
-    commit("setProducts", response.data);
-  },
-  async addProduct({ commit }, product) {
-    const response = await axios.post(
-      "http://localhost:3000/product-add",
-      product
-    );
-
-    commit("newProduct", response.data);
-  },
-  async deleteProduct({ commit }, id) {
-    await axios.get(`http://localhost:3000/product-delete/${id}`);
-
-    commit("removeProduct", id);
-  },
-
- async updateProduct({ commit }, id) {
-    await axios.post(`http://localhost:3000/product-edit/${id}`);
-
-    commit("updateProduct", id);
-  },
-}
-
+});
+},
+  updateproduct({ commit }, id) {
+   return new Promise((resolve, reject) => {
+     axios.post(`http://localhost:3000/product-edit/${id}`).then((response) => {
+    commit("updateproduct", id);
+     resolve(response);
+   })
+   .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
+};
 
 const mutations = {
-  setProducts: (state, products) => (state.products = products),
-  newProduct: (state, product) => state.products.unshift(product),
-  removeProduct: (state, id) =>
+  setproduct: (state, products) => (state.products = products),
+  newproduct: (state, product) => state.products.unshift(product),
+  removeproduct: (state, id) =>
     (state.products = state.products.filter(product => product.id !== id)),
-  updateProduct: (state, id) =>
-    (state.products = state.products.filter(product => product.id !== id))
+  updateproduct: (state, id) =>
+    (state.products = state.products.filter(product => product.id !== id)),
+  productError: (state, productError) => {
+    state.productError= productError;
+  },
 };
 
 export default {

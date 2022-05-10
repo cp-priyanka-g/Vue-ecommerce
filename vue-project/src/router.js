@@ -1,13 +1,14 @@
 import {createRouter,createWebHistory} from 'vue-router'
 import SignupForm from '@/components/SignUp.vue'
 import Login from '@/components/Login.vue'
-import Test from '@/components/Test/test.vue'
 import Home from '@/components/Home.vue'
 import Product from '@/components/Admin/Product/Product.vue'
 import AddProduct from '@/components/Admin/Product/AddProduct.vue'
 import AdminDashboard from '@/components/Admin/Dashboard.vue'
-import AddCategory from '@/components/Admin/Categories/CreateCategory.vue'
+import AddCategory from '@/components/Admin/Categories/AddCategory.vue'
 import Category from '@/components/Admin/Categories/Category.vue'
+import AddSubcategory from '@/components/Admin/Subcategory/AddSubcategory.vue'
+import Subcategory from '@/components/Admin/Subcategory/Subcategory.vue'
 
 const routes = [
   {
@@ -40,7 +41,7 @@ const routes = [
     name: 'product-add',
     component: AddProduct
   },
-     {
+   {
     path: '/category-add',
     name: 'category-add',
     component: AddCategory
@@ -50,12 +51,16 @@ const routes = [
     name: 'category-list',
     component: Category
   },
-  //   {
-  //   path: '/test',
-  //   name: 'test',
-  //   component: Test
-  // }
-   
+  {
+    path: '/subcategory-add',
+    name: 'subcategory-add',
+    component: AddSubcategory
+  },
+    {
+    path: '/subcategory-list',
+    name: 'subcategory-list',
+    component: Subcategory
+  },
 ]
 
 const router=createRouter({

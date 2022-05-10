@@ -1,64 +1,83 @@
 <template>
-  <div class="add-product">
-    <form @submit.prevent="onSubmit">
-      <input type="text" v-model="title" placeholder="Add Product..." />
-      <input type="text" v-model="price" placeholder="Add Price..." />
-      <input
-        type="text"
-        v-model="description"
-        placeholder="Add Description..."
-      />
-      <input type="submit" value="Submit" />
-    </form>
+  <div class="col-md-6 offset-3">
+    <div class="container">
+      <Dashboard />
+      <form
+        @submit.prevent="onSubmit"
+        class="card mt-5 p-3 border border-dark bg-dark shadow-lg"
+      >
+        <div class="form-group">
+          <label class="text-light">Product Name</label>
+          <input
+            v-model="product.product_name"
+            type="text"
+            class="bg-dark border border-info text-info form-control"
+            placeholder="Enter product name"
+          />
+        </div>
+        <div class="form-group">
+          <label class="text-light">Product Description</label>
+          <input
+            v-model="product.Description"
+            type="text"
+            class="bg-dark border border-info text-info form-control"
+            placeholder="Enter Product Description"
+          />
+        </div>
+        <div class="form-group">
+          <label class="text-light">Product Price</label>
+          <input
+            v-model="product.price"
+            type="text"
+            class="bg-dark border border-info text-info form-control"
+            placeholder="Enter Price"
+          />
+        </div>
+
+        <div class="button-container">
+          <router-link to="/" tag="button" class="btn btn-outline-danger">
+            Cancel
+          </router-link>
+          <button type="submit" value="submit" class="btn btn-outline-success">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import Dashboard from "../Dashboard.vue";
 export default {
   name: "AddProduct",
   data() {
     return {
-      title: "",
-      price: "",
-      description: "",
+      product: {
+        product_name: "",
+        price: "",
+        Description: "",
+      },
     };
   },
   methods: {
-    ...mapActions(["addProduct"]),
+    ...mapActions(["addproduct"]),
     onSubmit() {
-      this.addProduct({
-        title: this.title,
+      this.addproduct({
+        product_name: this.product_name,
         price: this.price,
-        description: this.description,
+        description: this.Description,
       });
     },
+  },
+  components: {
+    Dashboard,
+  },
+  created() {
+    this.$store.dispatch("addproduct");
   },
 };
 </script>
 
-<style scoped>
-.add-product {
-  background: #fff;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-form {
-  display: flex;
-  justify-content: space-between;
-}
-input[type="text"] {
-  width: 270px;
-  padding: 10px;
-  border: 1px solid #2c3e50;
-  outline: 0;
-}
-input[type="submit"] {
-  width: 120px;
-  background: #2c3e50;
-  color: #fff;
-  border: 1px #2c3e50 solid;
-  cursor: pointer;
-}
-</style>
+<style scoped></style>

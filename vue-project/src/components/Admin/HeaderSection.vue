@@ -64,9 +64,8 @@
               >Sub-Category</a
             >
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Show </a>
-              <a class="dropdown-item" href="#">Add</a>
-              <a class="dropdown-item" href="#">Edit</a>
+              <a class="dropdown-item" href="/subcategory-list">Show </a>
+              <a class="dropdown-item" href="subcategory-add">Add</a>
             </div>
           </li>
           <li class="nav-item">

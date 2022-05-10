@@ -1,16 +1,20 @@
 <template>
-  <ul class="products-listing">
-    <li v-for="product in allProducts" :key="product.pid">
-      {{ product.product_name }} | {{ product.price | currency }} |
-      {{ product.Description }}
-      <button @click="deleteProduct(product.pid)">❌</button>
-      <button @click="updateProduct(product.pid)">Update</button>
-    </li>
-  </ul>
+  <div class="container">
+    <Dashboard />
+    <ul class="products-listing">
+      <li v-for="product in allProducts" :key="product.pid">
+        {{ product.product_name }} | {{ product.price | currency }} |
+        {{ product.Description }}
+        <button @click="deleteproduct(product.pid)">❌</button>
+        <button @click="updateproduct(product.pid)">Update</button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Dashboard from "../Dashboard.vue";
 export default {
   name: "Products",
   filters: {
@@ -20,11 +24,15 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getProducts", "deleteProduct", "updateProduct"]),
+    ...mapActions(["getproduct", "deleteproduct", "updateproduct"]),
+  },
+  components: {
+    Dashboard,
   },
   computed: mapGetters(["allProducts"]),
   created() {
-    this.getProducts();
+    this.$store.dispatch("getproduct");
+    this.getproduct();
   },
 };
 </script>

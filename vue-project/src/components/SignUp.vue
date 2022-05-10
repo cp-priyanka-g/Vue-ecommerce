@@ -3,13 +3,13 @@
     <h1>Register</h1>
     <form @submit.prevent="handleSubmit">
       <label>Name:</label>
-      <input type="text" required />
+      <input type="text" required v-model="username" />
 
       <label>Email :</label>
-      <input type="email" required />
+      <input type="email" required v-model="email" />
 
       <label>Password :</label>
-      <input type="password" required />
+      <input type="password" required v-model="password" />
       <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
       <div class="button mt-5">
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "SignUp",
@@ -42,9 +42,14 @@ export default {
       password: "",
     };
   },
+  computed: {
+    ...mapState("users", ["users"]),
+
+    ...mapGetters("users", ["get"]),
+  },
 
   methods: {
-    ...mapActions(["addUsers"]),
+    ...mapActions(["register"]),
 
     handleSubmit() {
       //Validate password field length
@@ -60,7 +65,7 @@ export default {
       }
     },
     register() {
-      this.addUsers({
+      this.register({
         name: this.username,
         email: this.email,
         password: this.password,
