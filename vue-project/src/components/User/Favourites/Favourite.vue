@@ -2,9 +2,10 @@
   <div>
     <Dashboard />
     <ul class="products-listing">
-      <li v-for="product in allProducts" :key="product.pid">
-        {{ product.product_name }} | {{ product.price | currency }} |
-        {{ product.Description }}
+      <li v-for="favourite in allfavourite" :key="favourite.pid">
+        {{ favourite.pid }}
+
+        <button @click="deleteproduct(product.pid)">❌</button>
       </li>
     </ul>
   </div>
@@ -12,19 +13,19 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Dashboard from "@/components/User/Dashboard.vue";
+import Dashboard from "../Dashboard.vue";
 export default {
-  name: "Products",
+  name: "",
+
   methods: {
-    ...mapActions(["showproduct"]),
+    ...mapActions(["deletefavourite"]),
   },
   components: {
     Dashboard,
   },
-  computed: mapGetters(["allProducts"]),
+  computed: mapGetters(["allfavourite"]),
   created() {
-    this.$store.dispatch("showproduct");
-    this.getproduct();
+    this.$store.dispatch("deletefavourite");
   },
 };
 </script>

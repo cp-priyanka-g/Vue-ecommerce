@@ -75,9 +75,7 @@ export default {
     Dashboard,
   },
   created() {
-    this.$store.dispatch("addproduct");
+    this.$store.dispatch("addproduct", this.product);
   },
 };
 </script>
-
-<style scoped></style>

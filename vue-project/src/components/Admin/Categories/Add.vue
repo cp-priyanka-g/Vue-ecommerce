@@ -1,37 +1,28 @@
 <template>
-  <div class="row">
-    <div>
-      <Dashboard />
+  <div>
+    <Dashboard />
+    <div class="row">
       <div class="col-md-6 offset-3">
         <form
           @submit.prevent="onSubmit"
           class="card mt-5 p-3 border border-dark bg-dark shadow-lg"
         >
           <div class="form-group">
-            <label class="text-light">SubCategory Name</label>
+            <label class="text-light">Category Name</label>
             <input
-              v-model="subcategory.name"
+              v-model="category.name"
               type="text"
               class="bg-dark border border-info text-info form-control"
-              placeholder="Enter Subcategory name"
+              placeholder="Enter category name"
             />
           </div>
           <div class="form-group">
             <label class="text-light">Product ID</label>
             <input
-              v-model="subcategory.pid"
+              v-model="category.pid"
               type="text"
               class="bg-dark border border-info text-info form-control"
               placeholder="Enter Product id"
-            />
-          </div>
-          <div class="form-group">
-            <label class="text-light">Category ID</label>
-            <input
-              v-model="subcategory.cid"
-              type="text"
-              class="bg-dark border border-info text-info form-control"
-              placeholder="Enter Category id"
             />
           </div>
           <div class="button-container">
@@ -51,28 +42,26 @@ import Dashboard from "../Dashboard.vue";
 export default {
   data() {
     return {
-      subcategory: {
+      category: {
         name: "",
         pid: "",
-        cid: "",
       },
     };
+  },
+  methods: {
+    ...mapActions(["addcategory"]),
+    onSubmit() {
+      this.addcategory({
+        category_name: this.name,
+        pid: this.pid,
+      });
+    },
   },
   components: {
     Dashboard,
   },
-  methods: {
-    ...mapActions(["addsubcategory"]),
-    onSubmit() {
-      this.addsubcategory({
-        name: this.name,
-        pid: this.pid,
-        cid: this.cid,
-      });
-    },
-  },
   created() {
-    this.$store.dispatch("addsubcategory");
+    this.$store.dispatch("addcategory", this.category);
   },
 };
 </script>

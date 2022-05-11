@@ -1,10 +1,12 @@
 import axios from "axios";
 
 const state = {
-  products: [],
+  products: [ ],
+  favourite:[],
   productError:"Crud error on product"
 };
 const getters = {
+  allfavourite: state => state.favourite,
   allProducts: state => state.products,
   productItemById: (state) => (id) => {
     return state. allProducts.find( allProduct=>allProduct.id === id)
@@ -73,6 +75,31 @@ const actions = {
         });
 });
 },
+ addfavourite({ commit }, favourite) {
+    return new Promise((resolve, reject) => {
+       axios.post(`http://localhost:3000/favourite-add/${id}`,favourite).then((response) => {
+    commit("newproduct", response.data);
+     resolve(response);
+  })
+  .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
+   deletefavourite({ commit }, id) {
+    return new Promise((resolve, reject) => {
+    axios.get(`http://localhost:3000/favourite-delete/${id}`).then((response) => {
+    commit("removeproduct", id);
+    resolve(response);
+    })
+     .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+
+});
+},
    deleteproduct({ commit }, id) {
     return new Promise((resolve, reject) => {
     axios.get(`http://localhost:3000/product-delete/${id}`).then((response) => {
@@ -98,7 +125,32 @@ const actions = {
         });
 });
 },
+   searchbyname({ commit },product) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/search-byname`,product).then((response) => {
+       commit("setproduct", response.data);
+          resolve(response);
+      })
+      .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
+   searchbyprice({ commit },product) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/search-byprice`,product).then((response) => {
+       commit("setproduct", response.data);
+          resolve(response);
+      })
+      .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
 };
+
 
 const mutations = {
   setproduct: (state, products) => (state.products = products),

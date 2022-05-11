@@ -3,27 +3,24 @@
     <a href="/user-dashboard">Home</a>
     <div>
       <div>
-        <a href="/product-show">Product</a>
-        <a href="/category-show">Category</a>
-        <a href="/subcategory-show">SubCategory</a>
+        <a href="/show-product">Product</a>
+        <a href="/show-category">Category</a>
+        <a href="/show-subcategory">SubCategory</a>
       </div>
     </div>
     <div>
-      <button class="subnavbtn">Favourite</button>
-      <div class="subnav-content">
-        <a href="/favourite-list">Wishlist</a>
-      </div>
+      <a class="nav-link" href="/add-favourite">AddFavourite</a>
     </div>
     <div>
-      <button>Contact<i class="fa fa-caret-down"></i></button>
-      <div class="subnav-content">
-        <a href="/email">Email</a>
-      </div>
+      <a class="nav-link" href="/show-favourite">Wishlist</a>
+    </div>
+    <div>
+      <a class="nav-link" href="/email">Email</a>
     </div>
     <a class="nav-link" href="/search-category">By category</a>
     <a class="nav-link" href="/search-subcategory">By Subcategory</a>
-    <a class="nav-link" href="/search-byprice">Search By Price</a>
-    <a class="nav-link" href="/search-byname">Search By name</a>
+    <a class="nav-link" href="/search-by-price">Search By Price</a>
+    <a class="nav-link" href="/search-by-name">Search By name</a>
     <a class="nav-link" href="/logout">Logout</a>
   </div>
 </template>
