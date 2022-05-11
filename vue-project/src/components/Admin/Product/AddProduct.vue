@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-6 offset-3">
-    <div class="container">
+    <div>
       <Dashboard />
       <form
         @submit.prevent="onSubmit"
@@ -56,8 +56,8 @@ export default {
     return {
       product: {
         product_name: "",
-        price: "",
         Description: "",
+        price: "",
       },
     };
   },
@@ -66,8 +66,8 @@ export default {
     onSubmit() {
       this.addproduct({
         product_name: this.product_name,
+        Description: this.Description,
         price: this.price,
-        description: this.Description,
       });
     },
   },

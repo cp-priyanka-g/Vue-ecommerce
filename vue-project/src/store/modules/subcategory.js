@@ -22,6 +22,18 @@ const actions = {
         });
 });
 },
+ showsubcategory({ commit }) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/subcategory-show`).then((response) => {
+       commit("setsubcategory", response.data);
+          resolve(response);
+      })
+      .catch((error) => {
+          commit("subcategoryError",error.subcategoryError);
+          reject(error);
+        });
+});
+},
  addsubcategory({ commit }, subcategory) {
     return new Promise((resolve, reject) => {
     axios.post(`http://localhost:3000/subcategory-add`,subcategory ).then((response) => {

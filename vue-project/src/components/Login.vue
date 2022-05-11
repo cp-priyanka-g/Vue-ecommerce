@@ -14,6 +14,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input
+                v-model="email"
                 type="email"
                 class="form-control"
                 id="exampleInputEmail1"
@@ -23,6 +24,7 @@
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
               <input
+                v-model="password"
                 type="password"
                 class="form-control"
                 id="exampleInputPassword1"
@@ -30,7 +32,7 @@
             </div>
 
             <button
-              @click="get()"
+              @click="getUser()"
               type="submit"
               class="btn btn-primary btn-block mt-5"
             >
@@ -49,16 +51,23 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Login",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
   methods: {
-    ...mapActions(["get"]),
+    ...mapActions(["getUser"]),
   },
   computed: mapGetters(["getUsers"]),
   created() {
-    this.$store.dispatch("get");
-    this.get();
+    this.$store.dispatch("getUser");
+    this.getUser();
   },
 };
 </script>

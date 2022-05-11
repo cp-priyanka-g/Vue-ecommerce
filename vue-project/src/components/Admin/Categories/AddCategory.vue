@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <Dashboard />
     <div class="row">
       <div class="col-md-6 offset-3">

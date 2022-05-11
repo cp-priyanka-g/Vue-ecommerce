@@ -9,6 +9,12 @@ import AddCategory from '@/components/Admin/Categories/AddCategory.vue'
 import Category from '@/components/Admin/Categories/Category.vue'
 import AddSubcategory from '@/components/Admin/Subcategory/AddSubcategory.vue'
 import Subcategory from '@/components/Admin/Subcategory/Subcategory.vue'
+import UserDashboard from '@/components/User/Dashboard.vue'
+import ShowProduct from '@/components/User/Product/ShowProduct.vue'
+import ProductByCategory from '@/components/User/Product/ProductByCategory.vue'
+import ProductBySubCategory from '@/components/User/Product/ProductBySubcategory.vue'
+import ShowCategory from '@/components/User/Category/ShowCategory.vue'
+import ShowSubCategory from '@/components/User/SubCategory/ShowSubCategory.vue'
 
 const routes = [
   {
@@ -60,6 +66,36 @@ const routes = [
     path: '/subcategory-list',
     name: 'subcategory-list',
     component: Subcategory
+  },
+   {
+    path: '/user-dashboard',
+    name: 'userdashboard',
+    component: UserDashboard
+  },
+    {
+    path: '/show-product',
+    name: 'show-product',
+    component: ShowProduct
+  },
+    {
+    path: '/product-by-category',
+    name: 'product-by-category',
+    component: ProductByCategory
+  },
+     {
+    path: '/product-by-subcategory',
+    name: 'product-by-subcategory',
+    component: ProductBySubCategory
+  },
+      {
+    path: '/show-category',
+    name: 'show-category',
+    component: ShowCategory
+  },
+      {
+    path: '/show-subcategory',
+    name: 'show-subcategory',
+    component: ShowSubCategory
   },
 ]
 

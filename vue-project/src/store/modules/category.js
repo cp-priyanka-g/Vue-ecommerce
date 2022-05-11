@@ -22,6 +22,18 @@ const actions = {
         });
 });
 },
+   showcategory({ commit }) {
+     return new Promise((resolve, reject) => {
+    const response =  axios.get("http://localhost:3000/category-show").then((response) => {
+    commit("setcategory", response.data);
+    resolve(response);
+  })
+  .catch((error) => {
+          commit("categoryError",error.categoryError);
+          reject(error);
+        });
+});
+},
 
   addcategory({ commit }, product) {
     return new Promise((resolve, reject) => {

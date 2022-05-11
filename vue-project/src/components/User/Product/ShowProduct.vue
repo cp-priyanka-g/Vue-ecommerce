@@ -5,8 +5,6 @@
       <li v-for="product in allProducts" :key="product.pid">
         {{ product.product_name }} | {{ product.price | currency }} |
         {{ product.Description }}
-        <button @click="deleteproduct(product.pid)">❌</button>
-        <button @click="updateproduct(product.pid)">Update</button>
       </li>
     </ul>
   </div>
@@ -14,24 +12,18 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Dashboard from "../Dashboard.vue";
+import Dashboard from "@/components/User/Dashboard.vue";
 export default {
   name: "Products",
-  filters: {
-    currency: function (value) {
-      return "₹ " + parseFloat(value).toFixed(2);
-    },
-  },
-
   methods: {
-    ...mapActions(["getproduct", "deleteproduct", "updateproduct"]),
+    ...mapActions(["showproduct"]),
   },
   components: {
     Dashboard,
   },
   computed: mapGetters(["allProducts"]),
   created() {
-    this.$store.dispatch("getproduct");
+    this.$store.dispatch("showproduct");
     this.getproduct();
   },
 };

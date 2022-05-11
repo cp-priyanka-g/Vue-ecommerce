@@ -4,8 +4,6 @@
     <ul class="products-listing">
       <li v-for="category in getcategory" :key="category.cid">
         {{ category.category_name }} | {{ category.cid }}
-        <button @click="deletecategory(category.cid)">❌</button>
-        <button @click="updatecategory(category.cid)">Update</button>
       </li>
     </ul>
   </div>
@@ -13,12 +11,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Dashboard from "../Dashboard.vue";
+import Dashboard from "@/components/User/Dashboard.vue";
 export default {
   name: "Category",
 
   methods: {
-    ...mapActions(["getcategory", "deletecategory", "updatecategory"]),
+    ...mapActions(["showcategory"]),
   },
   computed: mapGetters(["allCategories"]),
   components: {
@@ -26,7 +24,7 @@ export default {
   },
   created() {
     this.getcategory();
-    this.$store.dispatch("getcategory");
+    this.$store.dispatch("showcategory");
   },
 };
 </script>

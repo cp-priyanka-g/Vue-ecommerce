@@ -25,6 +25,42 @@ const actions = {
         });
 });
 },
+   showproduct({ commit }) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/product-show`).then((response) => {
+       commit("setproduct", response.data);
+          resolve(response);
+      })
+      .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
+   showproductbycategory({ commit }) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/search-category`).then((response) => {
+       commit("setproduct", response.data);
+          resolve(response);
+      })
+      .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
+   showproductbysubcategory({ commit }) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/search-subcategory`).then((response) => {
+       commit("setproduct", response.data);
+          resolve(response);
+      })
+      .catch((error) => {
+          commit("productError",error.productError);
+          reject(error);
+        });
+});
+},
  addproduct({ commit }, product) {
     return new Promise((resolve, reject) => {
        axios.post(`http://localhost:3000/product-add`, product ).then((response) => {

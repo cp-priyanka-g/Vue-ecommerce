@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <Dashboard />
 
     <ul class="products-listing">

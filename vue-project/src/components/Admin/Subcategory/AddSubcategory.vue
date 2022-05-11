@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="container">
+    <div>
       <Dashboard />
       <div class="col-md-6 offset-3">
         <form
