@@ -52,7 +52,6 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import router from "@/router.js";
 export default {
   name: "Login",
   data() {
@@ -67,6 +66,7 @@ export default {
   computed: mapGetters(["getUsers"]),
   created() {
     this.$store.dispatch("getUser");
+    this.$session.start();
     // router.push("/admin-dashboard"), this.getUser();
   },
 };

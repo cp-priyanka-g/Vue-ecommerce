@@ -61,6 +61,7 @@ const actions={
       axios
         .get(`http://localhost:3000/logout`)
         .then((response) => {
+          this.$session.destroy()
           commit("LOG_OUT");
           resolve(response);
 
