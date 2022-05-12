@@ -1,5 +1,5 @@
 import {createRouter,createWebHistory} from 'vue-router'
-import SignupForm from '@/components/SignUp.vue'
+import SignupForm from '@/components/Admin/SignUp.vue'
 import Login from '@/components/Login.vue'
 import Home from '@/components/Home.vue'
 import Product from '@/components/Admin/Products/Product.vue'
@@ -17,8 +17,13 @@ import ShowCategory from '@/components/User/Category/Show.vue'
 import ShowSubCategory from '@/components/User/SubCategory/Show.vue'
 import SearchByName from '@/components/User/Search/ByName.vue'
 import SearchByPrice from '@/components/User/Search/ByPrice.vue'
+import SearchByCategory from '@/components/User/Product/ByCategory.vue'
+import SearchBySubCategory from '@/components/User/Product/BySubcategory.vue'
 import AddFavourite  from '@/components/User/Favourites/Add.vue'
 import ShowFavourite from '@/components/User/Favourites/Favourite.vue'
+import UserSignupForm  from '@/components/User/SignUp.vue'
+import SendEmail  from '@/components/User/SendEmail.vue'
+
 
 const routes = [
   {
@@ -112,6 +117,16 @@ const routes = [
     name: 'search-by-price',
     component: SearchByPrice
   },
+   {
+    path: '/search-category',
+    name: 'search-category',
+    component: SearchByCategory
+  },
+   {
+    path: '/search-subcategory',
+    name: 'search-subcategory',
+    component: SearchBySubCategory
+  },
   {
     path: '/add-favourite',
     name: 'add-favourite',
@@ -122,9 +137,17 @@ const routes = [
     name: 'show-favourite',
     component:ShowFavourite
   },
-  
+    {
+    path: '/user-register',
+    name: 'user-signup',
+    component: UserSignupForm
+  },
+{
+    path: '/send-mail',
+    name: 'sendmail',
+    component:SendEmail
+  },
 ]
-
 const router=createRouter({
   history: createWebHistory(),
   routes

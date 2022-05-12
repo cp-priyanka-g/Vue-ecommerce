@@ -7,7 +7,7 @@
             type="text"
             class="form-control"
             v-model="product_price"
-            placeholder="Product name"
+            placeholder="Product Price"
           />
         </div>
       </div>
@@ -34,14 +34,18 @@ export default {
   name: "SearchByPrice",
   data() {
     return {
-      product_price: "",
+      product: {
+        product_name: "",
+        price: "",
+        Description: "",
+      },
     };
   },
   methods: {
     ...mapActions(["searchbyprice"]),
     onSubmit() {
       this.searchbyprice({
-        price: this.product_price,
+        price: this.product.product_price,
       });
     },
   },
@@ -50,7 +54,7 @@ export default {
     Dashboard,
   },
   created() {
-    this.$store.dispatch("searchbyname", this.product_price);
+    this.$store.dispatch("searchbyname", this.product.product_price);
   },
 };
 </script>

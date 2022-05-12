@@ -32,7 +32,7 @@
 import { mapActions } from "vuex";
 import Dashboard from "../Dashboard.vue";
 export default {
-  name: "Add",
+  name: "AddFavourite",
   data() {
     return {
       product: {

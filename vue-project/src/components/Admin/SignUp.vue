@@ -32,7 +32,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-
+import router from "@/router.js";
 export default {
   name: "SignUp",
   data() {
@@ -44,8 +44,7 @@ export default {
   },
   computed: {
     ...mapState("users", ["users"]),
-
-    ...mapGetters("users", ["get"]),
+    ...mapGetters("users", ["getUser"]),
   },
 
   methods: {
@@ -71,6 +70,10 @@ export default {
         password: this.password,
       });
     },
+  },
+  created() {
+    this.$store.dispatch("register", this.register);
+    router.push("/admin-dashboard");
   },
 };
 </script>

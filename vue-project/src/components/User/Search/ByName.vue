@@ -34,14 +34,18 @@ export default {
   name: "SearchByName",
   data() {
     return {
-      product_name: "",
+      product: {
+        product_name: "",
+        price: "",
+        Description: "",
+      },
     };
   },
   methods: {
     ...mapActions(["searchbyname"]),
     onSubmit() {
       this.searchbyname({
-        product_name: this.product_name,
+        product_name: this.product.product_name,
       });
     },
   },
@@ -50,7 +54,7 @@ export default {
     Dashboard,
   },
   created() {
-    this.$store.dispatch("searchbyname", this.product_name);
+    this.$store.dispatch("searchbyname", this.product.product_name);
   },
 };
 </script>

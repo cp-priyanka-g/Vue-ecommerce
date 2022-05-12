@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const state = {
-  products: [ ],
+  products: {},
   favourite:[],
   productError:"Crud error on product"
 };
@@ -19,6 +19,7 @@ const actions = {
      return new Promise((resolve, reject) => {
      axios.get(`http://localhost:3000/product-list`).then((response) => {
        commit("setproduct", response.data);
+       console.log("Get PRoduct",response.data);
           resolve(response);
       })
       .catch((error) => {
@@ -67,6 +68,7 @@ const actions = {
     return new Promise((resolve, reject) => {
        axios.post(`http://localhost:3000/product-add`, product ).then((response) => {
     commit("newproduct", response.data);
+    console.log("Add product",response.data);
      resolve(response);
   })
   .catch((error) => {
@@ -150,7 +152,6 @@ const actions = {
 });
 },
 };
-
 
 const mutations = {
   setproduct: (state, products) => (state.products = products),

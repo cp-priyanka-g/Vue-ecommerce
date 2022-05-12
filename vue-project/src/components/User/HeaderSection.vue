@@ -15,15 +15,28 @@
       <a class="nav-link" href="/show-favourite">Wishlist</a>
     </div>
     <div>
-      <a class="nav-link" href="/email">Email</a>
+      <a class="nav-link" href="/send-mail">Email</a>
     </div>
     <a class="nav-link" href="/search-category">By category</a>
     <a class="nav-link" href="/search-subcategory">By Subcategory</a>
     <a class="nav-link" href="/search-by-price">Search By Price</a>
     <a class="nav-link" href="/search-by-name">Search By name</a>
-    <a class="nav-link" href="/logout">Logout</a>
+    <a class="nav-link" @click="logout">Logout</a>
   </div>
 </template>
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  methods: {
+    ...mapActions(["logout"]),
+  },
+
+  created() {
+    this.$store.dispatch("logout");
+  },
+};
+</script>
 
 <style scoped>
 body {
@@ -49,7 +62,6 @@ body {
   float: left;
   overflow: hidden;
 }
-
 .subnav .subnavbtn {
   font-size: 16px;
   border: none;

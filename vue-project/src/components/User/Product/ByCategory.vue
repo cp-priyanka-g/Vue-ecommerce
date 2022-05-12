@@ -24,7 +24,6 @@ export default {
   computed: mapGetters(["allProducts"]),
   created() {
     this.$store.dispatch("showproductbycategory");
-    this.getproduct();
   },
 };
 </script>

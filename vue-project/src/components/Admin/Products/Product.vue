@@ -31,8 +31,7 @@ export default {
   },
   computed: mapGetters(["allProducts"]),
   created() {
-    this.$store.dispatch("getproduct");
-    this.getproduct();
+    this.$store.dispatch("getproduct", "deleteproduct", "updateproduct");
   },
 };
 </script>

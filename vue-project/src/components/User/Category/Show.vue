@@ -2,7 +2,7 @@
   <div>
     <Dashboard />
     <ul class="products-listing">
-      <li v-for="category in getcategory" :key="category.cid">
+      <li v-for="category in allcategories" :key="category.cid">
         {{ category.category_name }} | {{ category.cid }}
       </li>
     </ul>
@@ -23,7 +23,6 @@ export default {
     Dashboard,
   },
   created() {
-    this.getcategory();
     this.$store.dispatch("showcategory");
   },
 };

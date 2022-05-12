@@ -15,6 +15,7 @@ import { mapGetters, mapActions } from "vuex";
 import Dashboard from "@/components/User/Dashboard.vue";
 export default {
   name: "Products",
+  props: "product",
   methods: {
     ...mapActions(["showproduct"]),
   },
@@ -24,7 +25,6 @@ export default {
   computed: mapGetters(["allProducts"]),
   created() {
     this.$store.dispatch("showproduct");
-    this.showproduct();
   },
 };
 </script>
