@@ -32,7 +32,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-
+import router from "@/router.js";
 export default {
   name: "SignUp",
   data() {
@@ -56,12 +56,6 @@ export default {
         this.password.length > 6
           ? ""
           : "Password should be more than 6 characters long!";
-
-      if (!this.passwordError) {
-        console.log(this.username);
-        console.log(this.email);
-        console.log(this.password);
-      }
     },
     userregister() {
       this.userregister({
@@ -69,6 +63,7 @@ export default {
         email: this.email,
         password: this.password,
       });
+      router.push("/user-dashboard");
     },
   },
   created() {

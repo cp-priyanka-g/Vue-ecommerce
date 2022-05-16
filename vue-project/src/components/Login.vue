@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" style="padding-top: 10%">
+    <div class="container pt-5">
       <div class="row d-flex justify-content-center">
         <div class="col-5 text-left login-form-container">
           <div class="d-flex justify-content-center">
@@ -52,6 +52,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import router from "@/router.js";
 export default {
   name: "Login",
   data() {
@@ -63,9 +64,14 @@ export default {
   methods: {
     ...mapActions(["getUser"]),
   },
-  computed: mapGetters(["getUsers"]),
+  computed: mapGetters(["getUsers", "isAdmin"]),
   created() {
     this.$store.dispatch("getUser");
+    // if (this.isAdmin) {
+    //   router.push("/admin-dashboard");
+    // } else {
+    //   router.push("/user-dashboard");
+    // }
   },
 };
 </script>

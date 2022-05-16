@@ -77,9 +77,9 @@ const actions = {
         });
 });
 },
- addfavourite({ commit }, favourite) {
+ addfavourite({ commit }, id,product) {
     return new Promise((resolve, reject) => {
-       axios.post(`http://localhost:3000/favourite-add/${id}`,favourite).then((response) => {
+       axios.post(`http://localhost:3000/favourite-add/${id}`,product).then((response) => {
     commit("newproduct", response.data);
      resolve(response);
   })

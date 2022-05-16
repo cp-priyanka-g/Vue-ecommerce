@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const state={
-    categories: [],
+     categories: [],
     categoryError:"Crud error on product"
   };
   const  getters ={

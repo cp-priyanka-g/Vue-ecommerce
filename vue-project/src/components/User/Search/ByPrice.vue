@@ -1,8 +1,10 @@
 <template>
   <div>
+    <Dashboard />
     <form @submit.prevent="onSubmit" method="get">
-      <div class="form-row">
-        <div class="col">
+      <div class="container">
+        <h1>Search product by Price</h1>
+        <div class="form-group">
           <input
             type="text"
             class="form-control"
@@ -10,8 +12,9 @@
             placeholder="Product Price"
           />
         </div>
+
+        <button type="submit" class="btn btn-primary mb-2 mt-5">Search</button>
       </div>
-      <button type="submit" class="btn btn-primary mb-2">Search</button>
     </form>
     <table border="1" v-if="product_price != null">
       <tr>
@@ -29,7 +32,9 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Dashboard from "@/components/User/Dashboard.vue";
+
+import Dashboard from "../../User/Dashboard.vue";
+
 export default {
   name: "SearchByPrice",
   data() {
@@ -41,6 +46,10 @@ export default {
       },
     };
   },
+  components: {
+    Dashboard,
+  },
+
   methods: {
     ...mapActions(["searchbyprice"]),
     onSubmit() {

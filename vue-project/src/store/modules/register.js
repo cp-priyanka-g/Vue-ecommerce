@@ -1,29 +1,31 @@
 
 import axios from "axios";
 const state = {
+
   users: [],
-  userError:"ERROR : Cannot register"
+  userError:"ERROR : Cannot register",
+
 };
 const getters = {
   getUsers: (state) => state.users,
-  userError:(state)=>state.userError
+  userError:(state)=>state.userError,
+  isAdmin: state => state.users["user_type"]
 };
 const actions={
   getUser({ commit },users) {
      return new Promise((resolve, reject) => {
      axios.get(`http://localhost:3000/login`,users).then((response) => {
-       this.$session.start();
+      
        commit("SET_USER", response.data);
           resolve(response);
-      })
-      
+      })      
       .catch((error) => {
           commit("SET_USER_ERROR",error.userError);
           reject(error);
         });
 });
   },
-  
+
     register({ commit },users) {
     return new Promise((resolve, reject) => {
       axios
@@ -31,8 +33,6 @@ const actions={
         .then((response) => {
           commit("SET_USER", response.users);
           resolve(response);
-
-
         })
         .catch((error) => {
           commit("SET_USER_ERROR",error.userError);
@@ -45,9 +45,9 @@ const actions={
       axios
         .get(`http://localhost:3000/register`,users)
         .then((response) => {
+          this.$session.start();
           commit("SET_USER", response.users);
           resolve(response);
-
 
         })
         .catch((error) => {
@@ -61,8 +61,7 @@ const actions={
       axios
         .get(`http://localhost:3000/logout`)
         .then((response) => {
-         
-          commit("LOG_OUT");
+         commit("LOG_OUT");
           resolve(response);
 
         })
@@ -71,10 +70,8 @@ const actions={
           reject(error);
         });
     });
-  },
-  
+  },  
 }
-
 const mutations={
     SET_USER:(state,data)=>{
     state.users=data;

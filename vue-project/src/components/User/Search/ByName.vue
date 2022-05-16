@@ -1,18 +1,23 @@
 <template>
   <div>
+    <Dashboard />
     <form @submit.prevent="onSubmit" method="get">
-      <div class="form-row">
-        <div class="col">
-          <input
-            type="text"
-            class="form-control"
-            v-model="product_name"
-            placeholder="Product name"
-          />
+      <div class="container">
+        <h1>Search product by name</h1>
+        <div class="form-group">
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              v-model="product_name"
+              placeholder="Product name"
+            />
+          </div>
         </div>
+        <button type="submit" class="btn btn-primary mb-2 mt-5">Search</button>
       </div>
-      <button type="submit" class="btn btn-primary mb-2">Search</button>
     </form>
+
     <table border="1" v-if="product_name != null">
       <tr>
         <th>Product</th>
@@ -30,6 +35,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Dashboard from "@/components/User/Dashboard.vue";
+
 export default {
   name: "SearchByName",
   data() {
@@ -40,6 +46,9 @@ export default {
         Description: "",
       },
     };
+  },
+  components: {
+    Dashboard,
   },
   methods: {
     ...mapActions(["searchbyname"]),
