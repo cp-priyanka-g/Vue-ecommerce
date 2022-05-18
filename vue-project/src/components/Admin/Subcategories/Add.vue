@@ -10,7 +10,7 @@
           <div class="form-group">
             <label class="text-light">SubCategory Name</label>
             <input
-              v-model="subcategory.name"
+              v-model="name"
               type="text"
               class="bg-dark border border-info text-info form-control"
               placeholder="Enter Subcategory name"
@@ -19,7 +19,7 @@
           <div class="form-group">
             <label class="text-light">Product ID</label>
             <input
-              v-model="subcategory.pid"
+              v-model="pid"
               type="text"
               class="bg-dark border border-info text-info form-control"
               placeholder="Enter Product id"
@@ -28,7 +28,7 @@
           <div class="form-group">
             <label class="text-light">Category ID</label>
             <input
-              v-model="subcategory.cid"
+              v-model="cid"
               type="text"
               class="bg-dark border border-info text-info form-control"
               placeholder="Enter Category id"
@@ -48,6 +48,7 @@
 <script>
 import { mapActions } from "vuex";
 import Dashboard from "../Dashboard.vue";
+import router from "@/router.js";
 export default {
   data() {
     return {
@@ -69,10 +70,9 @@ export default {
         pid: this.pid,
         cid: this.cid,
       });
+      this.$store.dispatch("addsubcategory");
+      router.push("/admin-dashboard");
     },
-  },
-  created() {
-    this.$store.dispatch("addsubcategory", this.subcategory);
   },
 };
 </script>

@@ -34,7 +34,6 @@ const actions = {
         });
 });
 },
-
   addcategory({ commit }, product) {
     return new Promise((resolve, reject) => {
     const response =  axios.post(
@@ -45,7 +44,7 @@ const actions = {
     resolve(response);
     })
      .catch((error) => {
-          commit("categoryError",error.categoryError);
+          commit("categoryError");
           reject(error);
         });
   });

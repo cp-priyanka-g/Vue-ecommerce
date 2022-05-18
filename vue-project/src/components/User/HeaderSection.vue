@@ -21,19 +21,19 @@
     <a class="nav-link" href="/search-subcategory">By Subcategory</a>
     <a class="nav-link" href="/search-by-price">Search By Price</a>
     <a class="nav-link" href="/search-by-name">Search By name</a>
-    <a class="nav-link" @click="logout">Logout</a>
+    <a class="nav-link" @click="logout()">Logout</a>
   </div>
 </template>
 <script>
 import { mapActions } from "vuex";
-
+import router from "@/router.js";
 export default {
   methods: {
     ...mapActions(["logout"]),
-  },
-
-  created() {
-    this.$store.dispatch("logout");
+    logout() {
+      this.$store.dispatch("logout");
+      router.push("/");
+    },
   },
 };
 </script>

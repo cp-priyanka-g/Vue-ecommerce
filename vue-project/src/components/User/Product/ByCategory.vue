@@ -15,15 +15,15 @@ import { mapGetters, mapActions } from "vuex";
 import Dashboard from "@/components/User/Dashboard.vue";
 export default {
   name: "Products",
-  methods: {
-    ...mapActions(["showproductbycategory"]),
-  },
+  // methods: {
+  //   ...mapActions(["showproductbycategory"]),
+  // },
   components: {
     Dashboard,
   },
   computed: mapGetters(["allProducts"]),
   created() {
-    this.$store.dispatch("showproductbycategory");
+    this.$store.dispatch("allProducts");
   },
 };
 </script>

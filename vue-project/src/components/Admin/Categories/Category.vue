@@ -2,7 +2,7 @@
   <div>
     <Dashboard />
     <ul class="products-listing">
-      <li v-for="category in getcategory" :key="category.cid">
+      <li v-for="category in allCategories" :key="category.cid">
         {{ category.category_name }} | {{ category.cid }}
         <button @click="deletecategory(category.cid)">❌</button>
         <button @click="updatecategory(category.cid)">Update</button>
@@ -25,7 +25,6 @@ export default {
     Dashboard,
   },
   created() {
-    this.getcategory();
     this.$store.dispatch("getcategory");
   },
 };

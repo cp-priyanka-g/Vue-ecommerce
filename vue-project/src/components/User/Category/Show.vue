@@ -14,15 +14,16 @@ import { mapGetters, mapActions } from "vuex";
 import Dashboard from "@/components/User/Dashboard.vue";
 export default {
   name: "Category",
-
   methods: {
     ...mapActions(["showcategory"]),
   },
-  computed: mapGetters(["allCategories"]),
+  computed: {
+    ...mapGetters(["allCategories"]),
+  },
   components: {
     Dashboard,
   },
-  created() {
+  mounted() {
     this.$store.dispatch("showcategory");
   },
 };

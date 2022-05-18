@@ -9,7 +9,7 @@
         <div class="form-group">
           <label class="text-light">Product Name</label>
           <input
-            v-model="product.product_name"
+            v-model="product_name"
             type="text"
             class="bg-dark border border-info text-info form-control"
             placeholder="Enter product name"
@@ -18,7 +18,7 @@
         <div class="form-group">
           <label class="text-light">Product Description</label>
           <input
-            v-model="product.Description"
+            v-model="Description"
             type="text"
             class="bg-dark border border-info text-info form-control"
             placeholder="Enter Product Description"
@@ -27,7 +27,7 @@
         <div class="form-group">
           <label class="text-light">Product Price</label>
           <input
-            v-model="product.price"
+            v-model="price"
             type="text"
             class="bg-dark border border-info text-info form-control"
             placeholder="Enter Price"
@@ -50,6 +50,7 @@
 <script>
 import { mapActions } from "vuex";
 import Dashboard from "../Dashboard.vue";
+import router from "@/router.js";
 export default {
   name: "AddProduct",
   data() {
@@ -69,13 +70,12 @@ export default {
         Description: this.Description,
         price: this.price,
       });
+      this.$store.dispatch("addproduct");
+      router.push("/admin-dashboard");
     },
   },
   components: {
     Dashboard,
-  },
-  created() {
-    this.$store.dispatch("addproduct", this.product);
   },
 };
 </script>

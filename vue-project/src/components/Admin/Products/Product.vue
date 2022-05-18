@@ -5,15 +5,15 @@
       <li v-for="product in allProducts" :key="product.pid">
         {{ product.product_name }} | {{ product.price | currency }} |
         {{ product.Description }}
-        <button @click="deleteproduct(product.pid)">❌</button>
-        <button @click="updateproduct(product.pid)">Update</button>
+        <button @click="deleteitem(product.pid)">❌</button>
+        <button @click="update(product.pid)">Update</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 import Dashboard from "../Dashboard.vue";
 export default {
   name: "Products",
@@ -22,16 +22,24 @@ export default {
       return "₹ " + parseFloat(value).toFixed(2);
     },
   },
-
-  methods: {
-    ...mapActions(["getproduct", "deleteproduct", "updateproduct"]),
-  },
   components: {
     Dashboard,
   },
-  computed: mapGetters(["allProducts"]),
-  created() {
-    this.$store.dispatch("getproduct", "deleteproduct", "updateproduct");
+  methods: {
+    ...mapActions(["deleteproduct"], ["updateproduct"]),
+    deleteitem(pid) {
+      this.$store.dispatch("deleteproduct", this.pid);
+    },
+    update(pid) {
+      this.$store.dispatch("updateproduct", this.pid);
+    },
+  },
+  computed: {
+    ...mapState(["products"]),
+    ...mapGetters(["allProducts"]),
+  },
+  mounted() {
+    this.$store.dispatch("getproduct");
   },
 };
 </script>

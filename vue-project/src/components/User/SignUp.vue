@@ -13,9 +13,7 @@
       <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
       <div class="button mt-5">
-        <button class="submit" @click="register()" type="submit">
-          Sign up here
-        </button>
+        <button class="submit" type="submit">Sign up here</button>
       </div>
       <p class="forgot-password text-right mt-2">
         Already registered
@@ -43,8 +41,8 @@ export default {
     };
   },
   computed: {
-    ...mapState("users", ["users"]),
-    ...mapGetters("users", ["getUser"]),
+    ...mapState(["users"]),
+    ...mapGetters(["getUser"]),
   },
 
   methods: {
@@ -56,18 +54,14 @@ export default {
         this.password.length > 6
           ? ""
           : "Password should be more than 6 characters long!";
-    },
-    userregister() {
       this.userregister({
         name: this.username,
         email: this.email,
         password: this.password,
       });
+      this.$store.dispatch("userregister");
       router.push("/user-dashboard");
     },
-  },
-  created() {
-    this.$store.dispatch("userregister", this.userregister);
   },
 };
 </script>

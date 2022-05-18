@@ -10,7 +10,7 @@
           <div class="form-group">
             <label class="text-light">Category Name</label>
             <input
-              v-model="category.name"
+              v-model="category_name"
               type="text"
               class="bg-dark border border-info text-info form-control"
               placeholder="Enter category name"
@@ -19,7 +19,7 @@
           <div class="form-group">
             <label class="text-light">Product ID</label>
             <input
-              v-model="category.pid"
+              v-model="pid"
               type="text"
               class="bg-dark border border-info text-info form-control"
               placeholder="Enter Product id"
@@ -39,29 +39,28 @@
 <script>
 import { mapActions } from "vuex";
 import Dashboard from "../Dashboard.vue";
+import router from "@/router.js";
 export default {
   data() {
     return {
-      category: {
-        name: "",
-        pid: "",
-      },
+      category_name: "",
+      pid: "",
     };
   },
+
   methods: {
     ...mapActions(["addcategory"]),
     onSubmit() {
       this.addcategory({
-        category_name: this.name,
+        category_name: this.category_name,
         pid: this.pid,
       });
+      this.$store.dispatch("addcategory");
+      router.push("/admin-dashboard");
     },
   },
   components: {
     Dashboard,
-  },
-  created() {
-    this.$store.dispatch("addcategory", this.category);
   },
 };
 </script>

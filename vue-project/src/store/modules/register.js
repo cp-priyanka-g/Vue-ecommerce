@@ -1,7 +1,6 @@
 
 import axios from "axios";
 const state = {
-
   users: [],
   userError:"ERROR : Cannot register",
 
@@ -14,28 +13,29 @@ const getters = {
 const actions={
   getUser({ commit },users) {
      return new Promise((resolve, reject) => {
-     axios.get(`http://localhost:3000/login`,users).then((response) => {
+     axios.post(`http://localhost:3000/login`,users).then((response) => {
       
-       commit("SET_USER", response.data);
-          resolve(response);
+         commit("SET_USER", response.data);
+          resolve(response);  
+        
       })      
       .catch((error) => {
-          commit("SET_USER_ERROR",error.userError);
+          commit("SET_USER_ERROR",error);
           reject(error);
         });
 });
   },
-
     register({ commit },users) {
     return new Promise((resolve, reject) => {
       axios
-        .get(`http://localhost:3000/admin/register`,users)
+        .post(`http://localhost:3000/admin/register`,users)
         .then((response) => {
+         
           commit("SET_USER", response.users);
           resolve(response);
         })
         .catch((error) => {
-          commit("SET_USER_ERROR",error.userError);
+                     commit("SET_USER_ERROR",error);
           reject(error);
         });
     });
@@ -43,15 +43,16 @@ const actions={
      userregister({ commit },users) {
     return new Promise((resolve, reject) => {
       axios
-        .get(`http://localhost:3000/register`,users)
+        .post(`http://localhost:3000/register`,users)
         .then((response) => {
-          this.$session.start();
+          
           commit("SET_USER", response.users);
           resolve(response);
 
         })
         .catch((error) => {
-          commit("SET_USER_ERROR",error.userError);
+          
+          commit("SET_USER_ERROR",error);
           reject(error);
         });
     });
@@ -63,10 +64,9 @@ const actions={
         .then((response) => {
          commit("LOG_OUT");
           resolve(response);
-
         })
         .catch((error) => {
-          commit("SET_USER_ERROR",error.userError);
+          commit("SET_USER_ERROR",error);
           reject(error);
         });
     });

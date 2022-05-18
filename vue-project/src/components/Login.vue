@@ -32,7 +32,7 @@
             </div>
 
             <button
-              @click="getUser()"
+              @click="submit()"
               type="submit"
               class="btn btn-primary btn-block mt-5"
             >
@@ -61,17 +61,26 @@ export default {
       password: "",
     };
   },
+
+  computed: {
+    ...mapGetters(["getUsers"], ["isAdmin"]),
+  },
   methods: {
     ...mapActions(["getUser"]),
-  },
-  computed: mapGetters(["getUsers", "isAdmin"]),
-  created() {
-    this.$store.dispatch("getUser");
-    // if (this.isAdmin) {
-    //   router.push("/admin-dashboard");
-    // } else {
-    //   router.push("/user-dashboard");
-    // }
+    submit() {
+      this.getUser({
+        email: this.email,
+        password: this.password,
+      });
+
+      this.$store.dispatch("getUser");
+      router.push("/admin-dashboard");
+      if (this.isAdmin == "admin") {
+        router.push("/admin-dashboard");
+      } else {
+        router.push("/user-dashboard");
+      }
+    },
   },
 };
 </script>

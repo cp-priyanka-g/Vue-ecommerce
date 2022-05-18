@@ -25,9 +25,9 @@ export default {
   components: {
     Dashboard,
   },
-  computed: mapGetters(["allsubcategory"]),
+  computed: mapGetters(["getsubcategory"]),
   created() {
-    this.getsubcategory();
+    this.$store.dispatch("getsubcategory");
   },
 };
 </script>

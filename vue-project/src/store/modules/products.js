@@ -19,8 +19,8 @@ const actions = {
      return new Promise((resolve, reject) => {
      axios.get(`http://localhost:3000/product-list`).then((response) => {
        commit("setproduct", response.data);
-       console.log("Get PRoduct",response.data);
-          resolve(response);
+              resolve(response.data);
+              console.log(response)
       })
       .catch((error) => {
           commit("productError",error.productError);
@@ -68,8 +68,7 @@ const actions = {
     return new Promise((resolve, reject) => {
        axios.post(`http://localhost:3000/product-add`, product ).then((response) => {
     commit("newproduct", response.data);
-    console.log("Add product",response.data);
-     resolve(response);
+       resolve(response);
   })
   .catch((error) => {
           commit("productError",error.productError);
@@ -130,10 +129,12 @@ const actions = {
    searchbyname({ commit },product) {
      return new Promise((resolve, reject) => {
      axios.get(`http://localhost:3000/search-byname`,product).then((response) => {
+       console.log(response)
        commit("setproduct", response.data);
           resolve(response);
       })
       .catch((error) => {
+        console.log(error)
           commit("productError",error.productError);
           reject(error);
         });
@@ -142,10 +143,12 @@ const actions = {
    searchbyprice({ commit },product) {
      return new Promise((resolve, reject) => {
      axios.get(`http://localhost:3000/search-byprice`,product).then((response) => {
+       console.log(response)
        commit("setproduct", response.data);
           resolve(response);
       })
       .catch((error) => {
+         console.log(error)
           commit("productError",error.productError);
           reject(error);
         });
@@ -157,9 +160,9 @@ const mutations = {
   setproduct: (state, products) => (state.products = products),
   newproduct: (state, product) => state.products.unshift(product),
   removeproduct: (state, id) =>
-    (state.products = state.products.filter(product => product.id !== id)),
+    state.products = state.products,
   updateproduct: (state, id) =>
-    (state.products = state.products.filter(product => product.id !== id)),
+    state.products = state.products,
   productError: (state, productError) => {
     state.productError= productError;
   },

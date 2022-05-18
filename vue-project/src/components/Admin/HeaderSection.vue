@@ -31,7 +31,7 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" @click="logout">LogOut</a>
+            <a class="nav-link" @click="logout()">LogOut</a>
           </li>
         </ul>
       </div>
@@ -42,14 +42,14 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-
+import router from "@/router.js";
 export default {
   methods: {
     ...mapActions(["logout"]),
-  },
-
-  created() {
-    this.$store.dispatch("logout");
+    logout() {
+      this.$store.dispatch("logout");
+      router.push("/");
+    },
   },
 };
 </script>

@@ -24,8 +24,7 @@ export default {
   },
   computed: mapGetters(["allProducts"]),
   created() {
-    this.$session.start();
-    this.$store.dispatch("showproduct");
+    this.$store.dispatch("allProducts");
   },
 };
 </script>
