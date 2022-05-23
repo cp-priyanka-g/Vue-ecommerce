@@ -82,6 +82,14 @@ export default {
       }
     },
   },
+  watch: {
+    username: {
+      handler() {
+        localStorage.setItem("username", JSON.stringify(this.email));
+      },
+      deep: true,
+    },
+  },
 };
 </script>
 
