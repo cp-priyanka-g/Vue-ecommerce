@@ -1,6 +1,7 @@
 <template>
   <div>
     <Dashboard />
+
     <ul class="products-listing">
       <li v-for="product in allProducts" :key="product.pid">
         {{ product.product_name }} | {{ product.price | currency }} |
@@ -11,20 +12,27 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import Dashboard from "@/components/User/Dashboard.vue";
+import { mapState, mapGetters, mapActions } from "vuex";
+import Dashboard from "../Dashboard.vue";
 export default {
   name: "Products",
-  props: "product",
-  methods: {
-    ...mapActions(["showproduct"]),
+  filters: {
+    currency: function (value) {
+      return "₹ " + parseFloat(value).toFixed(2);
+    },
   },
   components: {
     Dashboard,
   },
-  computed: mapGetters(["allProducts"]),
-  created() {
-    this.$store.dispatch("allProducts");
+  methods: {
+    ...mapActions(["showproduct", "deleteproduct", "updateproduct"]),
+  },
+  computed: {
+    ...mapState(["products"]),
+    ...mapGetters(["allProducts"]),
+  },
+  mounted() {
+    this.$store.dispatch("showproduct");
   },
 };
 </script>

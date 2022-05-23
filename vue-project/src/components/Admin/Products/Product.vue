@@ -5,8 +5,8 @@
       <li v-for="product in allProducts" :key="product.pid">
         {{ product.product_name }} | {{ product.price | currency }} |
         {{ product.Description }}
-        <button @click="deleteitem(product.pid)">❌</button>
-        <button @click="update(product.pid)">Update</button>
+        <button @click.prevent="deleteproduct(product.pid)">❌</button>
+        <button @click.prevent="editproduct(product.pid)">Update</button>
       </li>
     </ul>
   </div>
@@ -15,6 +15,8 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import Dashboard from "../Dashboard.vue";
+
+import router from "@/router.js";
 export default {
   name: "Products",
   filters: {
@@ -26,12 +28,9 @@ export default {
     Dashboard,
   },
   methods: {
-    ...mapActions(["deleteproduct"], ["updateproduct"]),
-    deleteitem(pid) {
-      this.$store.dispatch("deleteproduct", this.pid);
-    },
-    update(pid) {
-      this.$store.dispatch("updateproduct", this.pid);
+    ...mapActions(["getproduct", "deleteproduct"]),
+    editproduct(pid) {
+      router.push("/product-update/" + pid);
     },
   },
   computed: {

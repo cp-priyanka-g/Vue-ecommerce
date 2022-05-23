@@ -12,11 +12,17 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Dashboard from "@/components/User/Dashboard.vue";
+import Dashboard from "../Dashboard.vue";
+
 export default {
-  name: "Products",
+  name: "Subcategory",
+
   methods: {
-    ...mapActions(["showproductbysubcategory"]),
+    ...mapActions([
+      "showproductbysubcategory",
+      "deletesubcategory",
+      "updatesubcategory",
+    ]),
   },
   components: {
     Dashboard,
@@ -27,7 +33,6 @@ export default {
   },
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .products-listing li {

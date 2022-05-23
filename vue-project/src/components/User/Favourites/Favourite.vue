@@ -2,7 +2,7 @@
   <div>
     <Dashboard />
     <ul class="products-listing">
-      <li v-for="favourite in allfavourite" :key="favourite.pid">
+      <li v-for="favourite in getfavourite" :key="favourite.pid">
         {{ favourite.pid }}
 
         <button @click="deleteproduct(product.pid)">❌</button>
@@ -18,14 +18,17 @@ export default {
   name: "",
 
   methods: {
-    ...mapActions(["deletefavourite"]),
+    ...mapActions(["deletefavourite", "getfavourite"]),
   },
   components: {
     Dashboard,
   },
   computed: mapGetters(["allfavourite"]),
-  created() {
+  mounted() {
     this.$store.dispatch("deletefavourite");
+  },
+  created() {
+    this.$store.dispatch("getfavourite");
   },
 };
 </script>

@@ -9,21 +9,25 @@
     </ul>
   </div>
 </template>
-
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Dashboard from "@/components/User/Dashboard.vue";
+import Dashboard from "../Dashboard.vue";
 export default {
-  name: "Products",
-  // methods: {
-  //   ...mapActions(["showproductbycategory"]),
-  // },
+  name: "Category",
+
+  methods: {
+    ...mapActions([
+      "showproductbycategory",
+      "deletecategory",
+      "updatecategory",
+    ]),
+  },
+  computed: mapGetters(["allProducts"]),
   components: {
     Dashboard,
   },
-  computed: mapGetters(["allProducts"]),
   created() {
-    this.$store.dispatch("allProducts");
+    this.$store.dispatch("showproductbycategory");
   },
 };
 </script>

@@ -7,12 +7,16 @@ import AddProduct from '@/components/Admin/Products/Add.vue'
 import AdminDashboard from '@/components/Admin/Dashboard.vue'
 import AddCategory from '@/components/Admin/Categories/Add.vue'
 import Category from '@/components/Admin/Categories/Category.vue'
+import UpdateCategory from '@/components/Admin/Categories/Edit.vue'
 import AddSubcategory from '@/components/Admin/Subcategories/Add.vue'
 import Subcategory from '@/components/Admin/Subcategories/Subcategory.vue'
+import UpdateSubcategory from '@/components/Admin/Subcategories/Edit.vue'
 import UserDashboard from '@/components/User/Dashboard.vue'
 import ShowProduct from '@/components/User/Product/Show.vue'
 import ProductByCategory from '@/components/User/Product/ByCategory.vue'
 import ProductBySubCategory from '@/components/User/Product/BySubcategory.vue'
+
+import UpdateProduct from '@/components/Admin/Products/Edit.vue'
 import ShowCategory from '@/components/User/Category/Show.vue'
 import ShowSubCategory from '@/components/User/SubCategory/Show.vue'
 import SearchByName from '@/components/User/Search/ByName.vue'
@@ -55,6 +59,21 @@ const routes = [
     path: '/product-add',
     name: 'product-add',
     component: AddProduct
+  },
+    {
+    path: '/product-update/:id',
+    name: 'product-update',
+    component: UpdateProduct
+  },
+     {
+    path: '/category-update/:id',
+    name: 'category-update',
+    component: UpdateCategory
+  },
+     {
+    path: '/subcategory-update/:id',
+    name: 'subcategory-update',
+    component: UpdateSubcategory
   },
    {
     path: '/category-add',

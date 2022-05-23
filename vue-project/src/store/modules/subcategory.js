@@ -2,11 +2,15 @@ import axios from "axios";
 
 const state = {
 
-  subcategory: [],
+  subcategory: {},
   subcategoryError:"Crud error on product"
 };
 const getters = {
   getsubcategory: state => state.products,
+  subcategoryItemById: (state) => (sid) => {
+    return state.subcategory.find( SubCategory=>SubCategory.sid === sid)
+  },
+   editsubcategories:(state)=>state.subcategory,
   subcategoryError:(state)=>state.subcategoryError
 };
 
@@ -60,6 +64,18 @@ const actions = {
 
 });
 },
+  editsubcategory({ commit }, id) {
+   return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/subcategory-edit/${id}`).then((response) => {
+    commit("updatesubcategory", id);
+     resolve(response);
+   })
+      .catch((error) => {
+          commit("subcategoryError",error.subcategoryError);
+          reject(error);
+        });
+});
+},
   updatesubcategory({ commit }, id) {
    return new Promise((resolve, reject) => {
      axios.post(`http://localhost:3000/subcategory-edit/${id}`).then((response) => {
@@ -79,8 +95,12 @@ const mutations = {
   newsubcategory: (state, product) => state.products.unshift(product),
   removesubcategory: (state, id) =>
     (state.products = state.products.filter(product => product.id !== id)),
-  updatesubcategory: (state, id) =>
-    (state.products = state.products.filter(product => product.id !== id)),
+  updatesubcategory: (state, subcategory) =>
+   state.subcategory = state.subcategory.map((subcategory) => {
+        if (products.id ==subcategory.id) {
+          return subcategory;
+        }
+      }),
  subcategoryError: (state, subcategoryError) => {
     state.subcategoryError= subcategoryError;
   },

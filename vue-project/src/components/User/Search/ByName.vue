@@ -1,15 +1,15 @@
 <template>
   <div>
     <Dashboard />
-    <form @submit.prevent="onSubmit" method="get">
+    <form @submit.prevent="onSubmit()" method="get">
       <div class="container">
         <h1>Search product by name</h1>
         <div class="form-group">
           <div>
             <input
+              v-model="product_name"
               type="text"
               class="form-control"
-              v-model="product_name"
               placeholder="Product name"
             />
           </div>
@@ -18,18 +18,12 @@
       </div>
     </form>
 
-    <table border="1" v-if="product_name != null">
-      <tr>
-        <th>Product</th>
-        <th>Price</th>
-      </tr>
-
-      <tr>
-        <td>v-for="product in allProducts"> {{ product.product_name }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.Description }}</td>
-      </tr>
-    </table>
+    <ul class="products-listing" v-if="product_name != null">
+      <li v-for="product in allProducts" :key="product.pid">
+        {{ product.product_name }} | {{ product.price | currency }} |
+        {{ product.Description }}
+      </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -40,11 +34,7 @@ export default {
   name: "SearchByName",
   data() {
     return {
-      product: {
-        product_name: "",
-        price: "",
-        Description: "",
-      },
+      product_name: "",
     };
   },
   components: {
@@ -54,16 +44,33 @@ export default {
     ...mapActions(["searchbyname"]),
     onSubmit() {
       this.searchbyname({
-        product_name: this.product.product_name,
+        product_name: this.product_name,
       });
+      this.$store.dispatch("searchbyname", this.product_name);
     },
   },
-  computed: mapGetters(["allProducts"]),
-  components: {
-    Dashboard,
-  },
-  created() {
-    this.$store.dispatch("searchbyname", this.product.product_name);
+  computed: {
+    ...mapGetters(["allProducts"]),
   },
 };
 </script>
+<style scoped>
+.products-listing li {
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.products-listing li button {
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>

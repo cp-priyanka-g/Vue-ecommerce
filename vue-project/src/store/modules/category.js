@@ -1,11 +1,15 @@
 import axios from "axios";
 
 const state={
-     categories: [],
+     categories: {},
     categoryError:"Crud error on product"
   };
   const  getters ={
   allCategories:state =>state.categories,
+   categoryItemById: (state) => (cid) => {
+    return state.category.find( Category=>Category.cid === cid)
+  },
+   editcategories:(state)=>state.categories,
   categoryError:(state)=>state.categoryError
     
 }
@@ -61,7 +65,18 @@ const actions = {
         });
       });
 },
-
+  editcategory({ commit }, cid) {
+     return new Promise((resolve, reject) => {
+     axios.get(`http://localhost:3000/category-edit/${cid}`).then((response) => {
+    commit("updatecategory",cid);
+    resolve(response);
+  })
+  .catch((error) => {
+          commit("categoryError", error.categoryError);
+          reject(error);
+        });
+      });  
+},
   updatecategory({ commit }, id) {
      return new Promise((resolve, reject) => {
      axios.post(`http://localhost:3000/category-edit/${id}`).then((response) => {
@@ -81,8 +96,12 @@ const mutations = {
   newcategory: (state,category) => state.categories.unshift(category),
   removecategory: (state, id) =>
     (state.categories = state.categories.filter(category => category.id !== id)),
-  updatecategory: (state, id) =>
-    (state. categories = state.categories.filter(category => category.id !== id)),
+  updatecategory: (state, category) =>
+   state.categories= state.categories.map((categories) => {
+        if (categories.id == category.id) {
+          return category;
+        }
+      }),
   categoryError: (state, categoryError) => {
     state.categoryError= categoryError;
   }

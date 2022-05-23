@@ -9,7 +9,7 @@
         <div class="form-group">
           <label class="text-light">Product ID</label>
           <input
-            v-model="product.pid"
+            v-model="pid"
             type="text"
             class="bg-dark border border-info text-info form-control"
             placeholder="Enter product ID"
@@ -31,13 +31,13 @@
 <script>
 import { mapActions } from "vuex";
 import Dashboard from "../Dashboard.vue";
+import router from "@/router.js";
 export default {
   name: "AddFavourite",
   data() {
     return {
-      product: {
-        pid: "",
-      },
+      pid: "",
+      id: 2,
     };
   },
   components: {
@@ -47,13 +47,12 @@ export default {
     ...mapActions(["addfavourite"]),
     onSubmit() {
       this.addfavourite({
-        pid: this.product.pid,
+        pid: this.pid,
+        id: this.id,
       });
+      this.$store.dispatch("addfavourite");
+      router.push("/user-dashboard");
     },
-  },
-
-  created() {
-    this.$store.dispatch("addfavourite", this.product);
   },
 };
 </script>
