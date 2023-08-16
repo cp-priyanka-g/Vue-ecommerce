@@ -14,7 +14,7 @@ RUN npm install
 ENV NODE_ENV production
 
 # Build application
-RUN npm run dev
+RUN yarn build
 
 # Register application port
 EXPOSE 3000
