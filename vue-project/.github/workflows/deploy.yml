@@ -1,0 +1,22 @@
+name: Deploy application
+
+# run workflow on every push
+on:
+  push:
+
+jobs:
+  deploy:
+    # run workflow on ubuntu with permissions
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.3
+
+      # setup latest node version
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "20"
